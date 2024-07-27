@@ -29,6 +29,7 @@ class SaleController extends Controller
             'product_id' => 'required',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
+            'date' => 'required|date',
             'customer_name' => 'nullable|string',
             'pay_price' => 'nullable|numeric',
         ]);
@@ -41,6 +42,7 @@ class SaleController extends Controller
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
+            'date' => $request->date,
             'total_price' => $total_price,
             'customer_name' => $request->customer_name,
             'pay_price' => $pay_price,
@@ -67,6 +69,7 @@ class SaleController extends Controller
             'product_id' => 'required',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
+            'date' => 'required|date',
             'customer_name' => 'nullable|string',
             'pay_price' => 'nullable|numeric',
         ]);
@@ -82,6 +85,7 @@ class SaleController extends Controller
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
+            'date' => $request->date,
             'total_price' => $total_price,
             'customer_name' => $request->customer_name,
             'pay_price' => $pay_price,
@@ -118,7 +122,7 @@ class SaleController extends Controller
 
     public function monthly()
     {
-        $sales = Sale::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(total_price) as total')
+        $sales = Sale::selectRaw('YEAR(date) as year, MONTH(date) as month, SUM(total_price) as total')
                     ->groupBy('year', 'month')
                     ->orderBy('year', 'desc')
                     ->orderBy('month', 'desc')
@@ -133,8 +137,8 @@ class SaleController extends Controller
 
     public function getMonthlyDetails($year, $month)
     {
-        $sales = Sale::whereYear('created_at', $year)
-                    ->whereMonth('created_at', $month)
+        $sales = Sale::whereYear('date', $year)
+                    ->whereMonth('date', $month)
                     ->with('product')
                     ->get();
 

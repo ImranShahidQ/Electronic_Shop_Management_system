@@ -59,7 +59,7 @@ class ExpenseController extends Controller
 
     public function monthly()
     {
-        $expenses = Expense::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(amount) as total')
+        $expenses = Expense::selectRaw('YEAR(date) as year, MONTH(date) as month, SUM(amount) as total')
                         ->groupBy('year', 'month')
                         ->orderBy('year', 'desc')
                         ->orderBy('month', 'desc')
@@ -74,8 +74,8 @@ class ExpenseController extends Controller
 
     public function getMonthlyDetails($year, $month)
     {
-        $expenses = Expense::whereYear('created_at', $year)
-                        ->whereMonth('created_at', $month)
+        $expenses = Expense::whereYear('date', $year)
+                        ->whereMonth('date', $month)
                         ->get();
 
         return response()->json($expenses);

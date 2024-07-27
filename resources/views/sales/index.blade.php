@@ -37,7 +37,7 @@
                     <td>{{ $sale->total_price }}</td>
                     <td>{{ $sale->pay_price }}</td>
                     <td>{{ $sale->due_price }}</td>
-                    <td style="white-space: nowrap;">{{ $sale->created_at->format('Y-m-d') }}</td>
+                    <td style="white-space: nowrap;">{{ $sale->date }}</td>
                     <td>
                         <div style="display: flex; gap: 5px;">
                             <a href="{{ route('sales.edit', $sale->id) }}" class="btn btn-primary">Edit</a>

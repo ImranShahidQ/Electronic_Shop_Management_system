@@ -17,6 +17,7 @@
                 <th>Stock</th>
                 <th>Price</th>
                 <th>Total Price</th>
+                <th>Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->price }} RS</td>
                     <td>{{ $product->total_price }} RS</td>
+                    <td style="white-space: nowrap;">{{ $product->date }}</td>
                     <td>
                         <a href="{{ route('products.edit', $product) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline-block;" class="delete-form">

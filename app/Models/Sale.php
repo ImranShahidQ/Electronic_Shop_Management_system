@@ -9,7 +9,7 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'quantity', 'price', 'total_price', 'customer_name', 'pay_price', 'due_price'];
+    protected $fillable = ['product_id', 'quantity', 'price', 'total_price', 'date', 'customer_name', 'pay_price', 'due_price'];
 
     public function product()
     {

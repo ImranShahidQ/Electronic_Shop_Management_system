@@ -38,6 +38,10 @@
                 <label for="due_price">Due Price</label>
                 <input type="number" step="0.01" name="due_price" class="form-control" id="due_price" value="{{ old('due_price', $purchase->due_price) }}" readonly>
             </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" name="date" class="form-control" id="date" value="{{ old('date', $purchase->date ?? '') }}" required>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

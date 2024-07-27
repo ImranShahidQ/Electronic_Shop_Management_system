@@ -69,7 +69,7 @@
                         data.forEach(expense => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                            <td>${new Date(expense.created_at).toLocaleDateString()}</td>
+                            <td>${new Date(expense.date).toLocaleDateString()}</td>
                             <td>${expense.description}</td>
                             <td>${expense.amount}</td>
                         `;

@@ -31,6 +31,7 @@ class PurchaseController extends Controller
             'product_id' => 'required',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
+            'date' => 'required|date',
             'company_name' => 'nullable|string',
             'pay_price' => 'nullable|numeric',
         ]);
@@ -43,6 +44,7 @@ class PurchaseController extends Controller
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
+            'date' => $request->date,
             'total_price' => $total_price,
             'company_name' => $request->company_name,
             'pay_price' => $pay_price,
@@ -77,6 +79,7 @@ class PurchaseController extends Controller
             'product_id' => 'required',
             'quantity' => 'required|integer',
             'price' => 'required|numeric',
+            'date' => 'required|date',
             'company_name' => 'nullable|string',
             'pay_price' => 'nullable|numeric',
         ]);
@@ -95,6 +98,7 @@ class PurchaseController extends Controller
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
+            'date' => $request->date,
             'total_price' => $total_price,
             'company_name' => $request->company_name,
             'pay_price' => $pay_price,
@@ -146,7 +150,7 @@ class PurchaseController extends Controller
 
     public function monthly()
     {
-        $purchases = Purchase::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(total_price) as total')
+        $purchases = Purchase::selectRaw('YEAR(date) as year, MONTH(date) as month, SUM(total_price) as total')
                             ->groupBy('year', 'month')
                             ->orderBy('year', 'desc')
                             ->orderBy('month', 'desc')
@@ -161,8 +165,8 @@ class PurchaseController extends Controller
 
     public function getMonthlyDetails($year, $month)
     {
-        $purchases = Purchase::whereYear('created_at', $year)
-                            ->whereMonth('created_at', $month)
+        $purchases = Purchase::whereYear('date', $year)
+                            ->whereMonth('date', $month)
                             ->with('product')
                             ->get();
 

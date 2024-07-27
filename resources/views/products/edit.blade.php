@@ -32,6 +32,10 @@
             <input type="number" step="0.01" name="price" class="form-control" id="price"
                 value="{{ $product->price }}" required>
         </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" name="date" class="form-control" id="date" value="{{ old('date', $product->date ?? '') }}" required>
+        </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 @endsection

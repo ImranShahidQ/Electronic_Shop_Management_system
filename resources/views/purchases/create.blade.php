@@ -34,6 +34,10 @@
             <label for="pay_price">Paid Price</label>
             <input type="number" step="0.01" name="pay_price" class="form-control" id="pay_price">
         </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" name="date" class="form-control" id="date" required>
+        </div>
         {{-- <div class="form-group">
             <label for="due_price">Due Price</label>
             <input type="number" step="0.01" name="due_price" class="form-control" id="due_price" readonly>

@@ -69,7 +69,7 @@
                         data.forEach(sale => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${new Date(sale.created_at).toLocaleDateString()}</td>
+                                <td>${new Date(sale.date).toLocaleDateString()}</td>
                                 <td>${sale.product.name}</td>
                                 <td>${sale.quantity}</td>
                                 <td>${sale.price}</td>
