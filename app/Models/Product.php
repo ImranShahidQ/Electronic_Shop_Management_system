@@ -26,6 +26,11 @@ class Product extends Model
         return $this->hasMany(Purchase::class);
     }
 
+    public function claims()
+    {
+        return $this->hasMany(Claim::class);
+    }
+
     public static function boot()
     {
         parent::boot();

@@ -7,6 +7,7 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\oldAccountController;
+use App\Http\Controllers\ClaimController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('purchases', PurchaseController::class);
     Route::resource('expenses', ExpenseController::class);
     Route::resource('oldAccounts', oldAccountController::class);
+    Route::resource('claims', ClaimController::class);
 });
 
 require __DIR__.'/auth.php';

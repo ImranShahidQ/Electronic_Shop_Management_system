@@ -177,6 +177,12 @@
                             </li>
                             <hr class="sidebar-divider">
                             <li class="nav-item">
+                                <a class="nav-link {{ Route::currentRouteName() == 'claims.index' ? 'active' : '' }}" href="{{ route('claims.index') }}">
+                                    Claim Records
+                                </a>
+                            </li>
+                            <hr class="sidebar-divider">
+                            <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'oldAccounts.index' ? 'active' : '' }}" href="{{ route('oldAccounts.index') }}">
                                     Old Accounts
                                 </a>
