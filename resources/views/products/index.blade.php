@@ -30,7 +30,7 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->price }} RS</td>
                     <td>{{ $product->total_price }} RS</td>
-                    <td style="white-space: nowrap;">{{ $product->date }}</td>
+                    <td style="white-space: nowrap;">{{ \Illuminate\Support\Carbon::parse($product->date)->format('d-m-Y') }}</td>
                     <td>
                         <a href="{{ route('products.edit', $product) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline-block;" class="delete-form">

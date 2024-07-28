@@ -13,6 +13,13 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    public function show(Category $category)
+    {
+        $products = $category->products;
+        $totalPrice = $products->sum('total_price');
+        return response()->json(['products' => $products, 'totalPrice' => $totalPrice]);
+    }
+
     public function create()
     {
         return view('categories.create');
