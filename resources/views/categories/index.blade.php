@@ -27,6 +27,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger delete-button">Delete</button>
                         </form>
+                        <a href="{{ route('categories.accountDetails', $category) }}" class="btn btn-info">Account Details</a>
                     </td>
                 </tr>
             @endforeach
@@ -39,6 +40,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Stock</th>
                     <th>Price</th>
                 </tr>
             </thead>
@@ -70,7 +72,7 @@
                         productsList.innerHTML = '';
                         data.products.forEach(product => {
                             const row = document.createElement('tr');
-                            row.innerHTML = `<td>${product.name}</td><td>${product.total_price}</td>`;
+                            row.innerHTML = `<td>${product.name}</td><td>${product.stock}</td><td>${product.total_price}</td>`;
                             productsList.appendChild(row);
                         });
                         document.getElementById('total-price').textContent = data.totalPrice;

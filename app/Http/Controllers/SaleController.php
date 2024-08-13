@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\Expense;
 use Carbon\Carbon;
 
 class SaleController extends Controller
@@ -143,5 +144,18 @@ class SaleController extends Controller
                     ->get();
 
         return response()->json($sales);
+    }
+
+    public function dailyReport()
+    {
+        $today = Carbon::today();
+        $sales = Sale::whereDate('date', $today)->get();
+        $expenses = Expense::whereDate('date', $today)->get();
+
+        $totalSales = $sales->sum('total_price');
+        $totalExpenses = $expenses->sum('amount');
+        $summary = $totalSales - $totalExpenses;
+
+        return view('sales.daily', compact('sales', 'expenses', 'totalSales', 'totalExpenses', 'summary'));
     }
 }

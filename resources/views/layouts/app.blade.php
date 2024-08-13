@@ -189,6 +189,12 @@
                             </li>
                             <hr class="sidebar-divider">
                             <li class="nav-item">
+                                <a href="{{ route('daily.report') }}" class="nav-link {{ Route::currentRouteName() == 'daily.report' ? 'active' : '' }}">
+                                    Daily Report
+                                </a>
+                            </li>
+                            <hr class="sidebar-divider">
+                            <li class="nav-item">
                                 <a class="nav-link {{ Route::currentRouteName() == 'sales.monthly' ? 'active' : '' }}" href="{{ route('sales.monthly') }}">
                                     Sales Per Month
                                 </a>

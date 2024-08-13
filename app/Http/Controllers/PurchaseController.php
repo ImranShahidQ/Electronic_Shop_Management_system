@@ -62,6 +62,16 @@ class PurchaseController extends Controller
         $product->total_price = $newPrice * $newStock;
         $product->save();
 
+        $category = $product->category;
+        if ($category) {
+            $accountDetail = $category->accountDetails()->latest('date')->first();
+            
+            if ($accountDetail) {
+                $newDuePrice = $accountDetail->due_price + $due_price;
+                $accountDetail->update(['due_price' => $newDuePrice]);
+            }
+        }
+
         return redirect()->route('purchases.index')->with('success', 'Purchase created successfully.');
     }
 
@@ -143,6 +153,17 @@ class PurchaseController extends Controller
         $product = Product::find($purchase->product_id);
         $product->stock -= $purchase->quantity; // Adjust stock based on removed quantity
         $product->save();
+
+        $category = $product->category;
+        if ($category) {
+            $accountDetail = $category->accountDetails()->latest('date')->first();
+            
+            if ($accountDetail) {
+                $newDuePrice = $accountDetail->due_price - $purchase->due_price;
+                $accountDetail->update(['due_price' => $newDuePrice]);
+            }
+        }
+
         $purchase->delete();
 
         return redirect()->route('purchases.index')->with('success', 'Purchase deleted successfully.');

@@ -30,8 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('categories/{category}/account-details', [CategoryController::class, 'accountDetails'])->name('categories.accountDetails');
+    Route::post('categories/account-details', [CategoryController::class, 'storeAccountDetails'])->name('categories.storeAccountDetails');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::get('/daily-report', [SaleController::class, 'dailyReport'])->name('daily.report');
     Route::resource('sales', SaleController::class);
     Route::resource('purchases', PurchaseController::class);
     Route::resource('expenses', ExpenseController::class);
